@@ -15,4 +15,5 @@ class TelefoneNumero extends Model
     [
 
     ];
+
 }
