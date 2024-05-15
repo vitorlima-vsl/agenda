@@ -16,4 +16,13 @@ class Endereco extends Model
     [
 
     ];
+
+    // ----------------> Setters <-------------------
+    public function setEnderecoAttribute($value)
+    {
+       if(isset($value))
+       {
+        $this->attributes['contato_id'] = Contato::where('id', $value)->first()->id;
+       }
+    }
 }
