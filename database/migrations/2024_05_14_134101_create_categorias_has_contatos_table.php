@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('categorias_has_contatos', function (Blueprint $table) {
             $table->foreignId('contato_id')->constrained('contatos');
             $table->foreignId('categoria_id')->constrained('categorias');
+           
         });
     }
 
