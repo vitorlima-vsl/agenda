@@ -83,7 +83,7 @@ class Contato extends Model
 
      public function categoriaRelationship()
      {
-         return $this->belongsToMany(Categoria::class, 'categorias_has_contatos', 'categoria_id', 'contato_id'); //[classe_da_model->tabela_pivot->id_da_tabela(associada_a_classe_passada_no_primeiro_argumento)->id_da_outra_tabela]
+         return $this->belongsToMany(Categoria::class, 'categorias_has_contatos', 'contato_id', 'categoria_id'); //[classe_da_model->tabela_pivot->id_da_tabela(associada_a_classe_passada_no_primeiro_argumento)->id_da_outra_tabela]
      }
 
 

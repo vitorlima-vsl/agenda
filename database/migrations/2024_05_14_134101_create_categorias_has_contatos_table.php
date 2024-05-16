@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('categorias_has_contatos', function (Blueprint $table) {
-            $table->foreignId('categoria_id')->constrained('categorias');
             $table->foreignId('contato_id')->constrained('contatos');
-
+            $table->foreignId('categoria_id')->constrained('categorias');
+           
         });
     }
 
