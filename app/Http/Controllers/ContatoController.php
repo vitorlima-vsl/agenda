@@ -3,15 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Contato;
 
 class ContatoController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     * @param \App\Models\Contato $contatos
+     * @return void
+     */
+    public function __construct(Contato $contatos)
+    {
+        $this->contatos = $contatos;
+    }
+
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
+        $contatos = $this->contatos->all();
+
+        return view('contatos.index', compact('contatos'));
     }
 
     /**
