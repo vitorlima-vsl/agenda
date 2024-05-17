@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contato;
+use App\Models\Categoria;
 
 class ContatoController extends Controller
 {
@@ -12,9 +13,11 @@ class ContatoController extends Controller
      * @param \App\Models\Contato $contatos
      * @return void
      */
-    public function __construct(Contato $contatos)
+    public function __construct(Contato $contatos, Categoria $categorias)
     {
         $this->contatos = $contatos;
+        $this->tipoTelefones = ['Fixo',  'Celular'];
+        $this->categorias = $categorias;
     }
 
 
@@ -30,12 +33,17 @@ class ContatoController extends Controller
         return view('contatos.index', compact('contatos'));
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
         //
+        $categorias = $this->categorias->all();
+        $tipoTelefones = $this->tipoTelefones;
+        return view('contatos.form', compact('categorias', 'tipoTelefones'));
     }
 
     /**
