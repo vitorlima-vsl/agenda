@@ -11,7 +11,11 @@ class Contato extends Model
     [];
 
     protected $appends=
-    [];
+    [
+        'categoria',
+        'endereco',
+        'telefoneNumero'
+    ];
 
 
     //----------------> Getters <-------------------
