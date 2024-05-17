@@ -16,7 +16,6 @@
 
         {{$categorias}}
             @foreach($tipoTelefones as $tipoTelefone)
-
             {{ $tipoTelefone }}
 
 @endforeach
