@@ -8,7 +8,11 @@ class TelefoneNumero extends Model
 {
     protected $hidden=
     [
-
+        'tipo',
+        'id',
+        'contato_id',
+        'created_at',
+        'updated_at'
     ];
 
     protected $appends=
@@ -21,7 +25,7 @@ class TelefoneNumero extends Model
 
     /**
      * Seta o atributo contato_id
-     * 
+     *
      */
 
     public function setTelefoneNumeroAttribute($value)
