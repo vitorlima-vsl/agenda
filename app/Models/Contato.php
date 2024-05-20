@@ -94,7 +94,4 @@ class Contato extends Model
          return $this->belongsToMany(Categoria::class, 'categorias_has_contatos', 'contato_id', 'categoria_id'); //[classe_da_model->tabela_pivot->id_da_tabela(associada_a_primeira_coluna_da_tabela_pivot)->id_da_outra_tabela_da_outra_coluna]
      }
 
-
-
-
 }
