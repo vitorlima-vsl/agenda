@@ -9,7 +9,6 @@ class Contato extends Model
 {
     protected $hidden=
     [
-        'id',
         'created_at',
         'updated_at'
     ];
@@ -19,6 +18,10 @@ class Contato extends Model
         'categoria',
         'endereco',
         'telefoneNumero'
+    ];
+
+    protected $fillable = [
+        'nome',
     ];
 
 

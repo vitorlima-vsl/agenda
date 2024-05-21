@@ -154,6 +154,11 @@ class ContatoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contato = $this->contatos->find($id);
+        $contato->enderecoRelationship()->delete();
+        $contato->telefoneNumeroRelationship()->delete();
+        $contato->categoriaRelationship()->sync(null);
+        $contato->delete();
+        return redirect()->route('contatos.index');
     }
 }

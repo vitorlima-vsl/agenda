@@ -9,7 +9,6 @@ class Categoria extends Model
 {
     protected $hidden=
     [
-        'id',
         'created_at',
         'updated_at'
     ];
@@ -17,6 +16,10 @@ class Categoria extends Model
     protected $appends=
     [
 
+    ];
+
+    protected $fillable = [
+        'nome',
     ];
 
     // ----------------> metodo de relacionamento <-------------------

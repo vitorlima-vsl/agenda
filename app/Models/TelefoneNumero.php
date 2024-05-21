@@ -8,9 +8,6 @@ class TelefoneNumero extends Model
 {
     protected $hidden=
     [
-        'tipo',
-        'id',
-        'contato_id',
         'created_at',
         'updated_at'
     ];
@@ -20,6 +17,11 @@ class TelefoneNumero extends Model
 
     ];
 
+    protected $fillable = [
+        'numero',
+        'tipo',
+        'contato_id'
+    ];
 
     // ----------------> Setters <-------------------
 
