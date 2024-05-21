@@ -16,13 +16,11 @@ class ContatoController extends Controller
     public function __construct(Contato $contatos, Categoria $categorias)
     {
         $this->contatos = $contatos;
+
         $this->tipoTelefones = ['Fixo', 'Celular'];
         $this->categorias = Categoria::all()->pluck('nome', 'id');
-        //isso
         $this->telefoneNumeros = new TelefoneNumero;
-        $this->tipoTelefone = TelefoneNumero::all()->pluck('tipo', 'id');
-
-        $this->endereco = new Endereco;
+        $this->enderecos = new Endereco;
         //ou isso
         //$this->telefoneNumeros = TelefoneNumero::all()->pluck('numero', 'tipo', 'id');
     }
@@ -65,7 +63,7 @@ class ContatoController extends Controller
                 'nome' => $request->nome,
             ]);
 
-        $endereco = $this->enderecos->create
+        $this->enderecos->create
         ([
                 'rua' => $request->rua,
                 'cidade' => $request->cidade,
@@ -89,31 +87,72 @@ class ContatoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+
+        $form = 'disabled';
+
+
+        $contato = $this->contatos->find($id);
+        $categorias = $this->categorias;
+        $tipoTelefones = $this->tipoTelefones;
+
+
+        return view('contatos.show', compact('contato','categorias', 'tipoTelefones','form'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         //
+        $contato = $this->contatos->find($id);
+        $categorias = $this->categorias;
+        $tipoTelefones = $this->tipoTelefones;
+        return view('contatos.form', compact('contato', 'categorias', 'tipoTelefones'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $contato = $this->contatos->find($id);
+        $endereco = $contato->endereco;
+        $endereco->update
+        ([
+            'rua' => $request->rua,
+            'cidade' => $request->cidade,
+            'numero' => $request->numero,
+            'contato_id' => tap($this->contato)->update([
+                'nome' => $request->nome
+                ])->id,
+    //tap é um helper que executa uma função e retorna o objeto, se nao fosse por ele eu iria pegar um true ou false.
+            ]);
+
+        $contato->telefoneNumeroRelationship()->delete();
+
+        for ($i = 0; $i < count($request->numero); $i++)
+        {
+            $this->telefoneNumeros->create
+            ([
+                    'numero' => $request->numero[$i],
+                    'tipo' => $request->tipo[$i],
+                    'contato_id' => $contato->id
+                ]);
+        }
+
+        $contato->categoriaRelationship()->sync($request->categoria);
+        return redirect()->route('contatos.show', $contato->id);
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         //
     }
