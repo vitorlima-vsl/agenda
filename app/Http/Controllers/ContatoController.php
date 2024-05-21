@@ -60,32 +60,32 @@ class ContatoController extends Controller
     {
         //
 
-        $contato= $this->contatos->create
+        $contato = $this->contatos->create
         ([
-            'nome' => $request->nome,
-        ]);
+                'nome' => $request->nome,
+            ]);
 
         $endereco = $this->enderecos->create
         ([
-            'rua' => $request->rua,
-            'cidade' => $request->cidade,
-            'numero' => $request->numero,
-            'contato_id' => $contato->id
-        ]);
+                'rua' => $request->rua,
+                'cidade' => $request->cidade,
+                'numero' => $request->numero,
+                'contato_id' => $contato->id
+            ]);
 
-    foreach ($request->numero as $numero) {
-        $telefoneNumero = $this->telefoneNumeros->create([
-            'numero' => $numero,
-            'tipo' => $request->tipo,
-            'contato_id' => $contato->id
-        ]);
+        for ($i = 0; $i < count($request->numero); $i++)
+        {
+            $this->telefoneNumeros->create
+            ([
+                    'numero' => $request->numero[$i],
+                    'tipo' => $request->tipo[$i],
+                    'contato_id' => $contato->id
+                ]);
+        }
+
+        $contato->categoriaRelationship()->attach($request->categoria);
+        return redirect()->route('contatos.index');
     }
-
-
-
-    $contato->categoriaRelationship()->attach($request->categoria);
-
-
     /**
      * Display the specified resource.
      */
