@@ -17,22 +17,25 @@
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
 
 
-    <form action="{{Route('contatos.store')}}" method="POST">
+    <form action="/update/{{$contato->id}}" method="POST">
         @csrf
         <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome">
+        <input type="text" name="nome" id="nome" value="{{$contato->nome}}">
         <label for="telefoneNumero">Telefone</label>
-        <input type="text" name="telefoneNumero[]" id="telefoneNumero">
+        @foreach ($contato->telefoneNumero as $telefone)
+        <input type="text" name="telefoneNumero[]" id="telefoneNumero"
+        value="{{$telefone->numero}}"
+        @endforeach>
 
         <label for="cidade">cidade</label>
-        <input type="text" name="cidade" id="cidade">
+        <input type="text" name="cidade" id="cidade" value="{{$contato->endereco->cidade}}">
         <label for="rua">rua</label>
-        <input type="text" name="rua" id="rua">
+        <input type="text" name="rua" id="rua" value="{{$contato->endereco->rua}}">
         <label for="numero">numero</label>
-        <input type="text" name="numero" id="numero">
+        <input type="text" name="numero" id="numero" value="{{$contato->endereco->numero}}">
 
         @foreach ($tipoTelefones as $tipoTelefone)
-            <input type="radio" name="tipo[]" value="{{ $loop->index }}">{{ $tipoTelefone }}
+            <input type="radio" name="tipo[]" value="{{$loop->index}}">{{ $tipoTelefone }}
         @endforeach
 
         @foreach ($categorias as $key => $categoria)
