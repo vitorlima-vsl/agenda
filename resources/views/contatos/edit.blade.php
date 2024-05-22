@@ -17,29 +17,38 @@
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
 
 
-    <form action="/update/{{$contato->id}}" method="POST">
+    <form action="/update/{{ $contato->id }}" method="POST">
         @csrf
+        @method("PUT")
         <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome" value="{{$contato->nome}}">
+        <input type="text" name="nome" id="nome" value="{{ $contato->nome }}">
+
         <label for="telefoneNumero">Telefone</label>
+
         @foreach ($contato->telefoneNumero as $telefone)
-        <input type="text" name="telefoneNumero[]" id="telefoneNumero"
-        value="{{$telefone->numero}}"
-        @endforeach>
+    <input type="text" name="telefoneNumero[]" id="telefoneNumero" value="{{ $telefone->numero }}">
+@endforeach
 
         <label for="cidade">cidade</label>
-        <input type="text" name="cidade" id="cidade" value="{{$contato->endereco->cidade}}">
+        <input type="text" name="cidade" id="cidade" value="{{ $contato->endereco->cidade }}">
         <label for="rua">rua</label>
-        <input type="text" name="rua" id="rua" value="{{$contato->endereco->rua}}">
+        <input type="text" name="rua" id="rua" value="{{ $contato->endereco->rua }}">
         <label for="numero">numero</label>
-        <input type="text" name="numero" id="numero" value="{{$contato->endereco->numero}}">
+        <input type="text" name="numero" id="numero" value="{{ $contato->endereco->numero }}">
+
+
 
         @foreach ($tipoTelefones as $tipoTelefone)
-            <input type="radio" name="tipo[]" value="{{$loop->index}}">{{ $tipoTelefone }}
-        @endforeach
-
+        <input type="radio" name="tipo[]"
+            value="{{ $loop->index }}"
+            @foreach ($contato->telefoneNumero as $telefone)
+                @if ($loop->parent->index == $telefone->tipo) checked @endif
+            @endforeach
+        >{{ $tipoTelefone }}
+    @endforeach
         @foreach ($categorias as $key => $categoria)
-            <input type="checkbox" name="categorias[]" value="{{ $key }}">{{ $categoria }}
+            <input type="checkbox" name="categorias[]" value="{{ $key }}"
+                @if ($contato->categoria->contains($key)) checked @endif>{{ $categoria }}
         @endforeach
         <button type="submit">Salvar</button>
         <button type="button" onclick="window.location.href='/index'">Cancelar</button>
