@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contato;
+use App\Models\TelefoneNumero;
 use App\Models\Categoria;
+use App\Models\Endereco;
 
 class ContatoController extends Controller
 {
@@ -21,8 +23,7 @@ class ContatoController extends Controller
         $this->categorias = Categoria::all()->pluck('nome', 'id');
         $this->telefoneNumeros = new TelefoneNumero;
         $this->enderecos = new Endereco;
-        //ou isso
-        //$this->telefoneNumeros = TelefoneNumero::all()->pluck('numero', 'tipo', 'id');
+
     }
 
 
@@ -32,13 +33,10 @@ class ContatoController extends Controller
      */
     public function index()
     {
-        //
         $contatos = $this->contatos->all();
 
         return view('contatos.index', compact('contatos'));
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -56,7 +54,9 @@ class ContatoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // dd($request->all());
+
 
         $contato = $this->contatos->create
         ([
@@ -71,17 +71,18 @@ class ContatoController extends Controller
                 'contato_id' => $contato->id
             ]);
 
-        for ($i = 0; $i < count($request->numero); $i++)
+
+        for ($i = 0; $i < count($request->telefoneNumero); $i++)
         {
             $this->telefoneNumeros->create
             ([
-                    'numero' => $request->numero[$i],
+                    'numero' => $request->telefoneNumero[$i],
                     'tipo' => $request->tipo[$i],
                     'contato_id' => $contato->id
                 ]);
         }
 
-        $contato->categoriaRelationship()->attach($request->categoria);
+        $contato->categoriaRelationship()->attach($request->categorias);
         return redirect()->route('contatos.index');
     }
     /**
@@ -108,10 +109,11 @@ class ContatoController extends Controller
     public function edit($id)
     {
         //
+
         $contato = $this->contatos->find($id);
         $categorias = $this->categorias;
         $tipoTelefones = $this->tipoTelefones;
-        return view('contatos.form', compact('contato', 'categorias', 'tipoTelefones'));
+        return view('contatos.edit', compact('contato', 'categorias', 'tipoTelefones'));
     }
 
     /**
@@ -144,7 +146,7 @@ class ContatoController extends Controller
                 ]);
         }
 
-        $contato->categoriaRelationship()->sync($request->categoria);
+        $contato->categoriaRelationship()->sync($request->categorias);
         return redirect()->route('contatos.show', $contato->id);
 
     }
