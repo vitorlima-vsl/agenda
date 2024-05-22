@@ -14,6 +14,7 @@
         Cidade: {{$contato->endereco->cidade}}
         Rua: {{$contato->endereco->rua}}
         Numero: {{$contato->endereco->numero}}
+        
         @foreach ($contato->telefoneNumero as $telefone)
             Telefone: {{$telefone->numero}}
            Tipo: @if ($telefone->tipo == 0)
@@ -35,7 +36,10 @@
             @csrf
             <button type="submit" >excluir</button>
         </form>
-        <button>ver contato</button>
+        <form action="/show/{{$contato->id}}" method="GET">
+            @csrf
+            <button>ver contato</button>
+        </form>
     </div>
 
 
