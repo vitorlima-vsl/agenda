@@ -99,7 +99,7 @@ class ContatoController extends Controller
         $tipoTelefones = $this->tipoTelefones;
 
 
-        return view('contatos.show', compact('contato','categorias', 'tipoTelefones','form'));
+        return view('contatos.form', compact('contato','categorias', 'tipoTelefones','form'));
 
     }
 
@@ -121,6 +121,7 @@ class ContatoController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $contato = $this->contatos->find($id);
         $endereco = $contato->endereco;
         $endereco->update
@@ -128,19 +129,20 @@ class ContatoController extends Controller
             'rua' => $request->rua,
             'cidade' => $request->cidade,
             'numero' => $request->numero,
-            'contato_id' => tap($this->contato)->update([
+            'contato_id' => tap($contato)->update([
                 'nome' => $request->nome
                 ])->id,
     //tap é um helper que executa uma função e retorna o objeto, se nao fosse por ele eu iria pegar um true ou false.
             ]);
 
+
         $contato->telefoneNumeroRelationship()->delete();
 
-        for ($i = 0; $i < count($request->numero); $i++)
+        for ($i = 0; $i < count($request->telefoneNumero); $i++)
         {
             $this->telefoneNumeros->create
             ([
-                    'numero' => $request->numero[$i],
+                    'numero' => $request->telefoneNumero[$i],
                     'tipo' => $request->tipo[$i],
                     'contato_id' => $contato->id
                 ]);
