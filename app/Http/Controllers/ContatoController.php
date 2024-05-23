@@ -99,7 +99,7 @@ class ContatoController extends Controller
         $tipoTelefones = $this->tipoTelefones;
 
 
-        return view('contatos.form', compact('contato','categorias', 'tipoTelefones','form'));
+        return view('contatos.show', compact('contato','categorias', 'tipoTelefones','form'));
 
     }
 
@@ -122,6 +122,7 @@ class ContatoController extends Controller
     public function update(Request $request, $id)
     {
 
+
         $contato = $this->contatos->find($id);
         $endereco = $contato->endereco;
         $endereco->update
@@ -137,6 +138,7 @@ class ContatoController extends Controller
 
 
         $contato->telefoneNumeroRelationship()->delete();
+        //  dd($request->all());
 
         for ($i = 0; $i < count($request->telefoneNumero); $i++)
         {
