@@ -50,10 +50,13 @@
         @foreach ($categorias as $key => $categoria)
             <input type="checkbox" name="categorias[]" value="{{ $key }}">{{ $categoria }}
         @endforeach
-        <button type="submit">Salvar</button>
-        <button type="button" onclick="window.location.href='/index'">Cancelar</button>
+
+        <div style="margin-top: 1rem">
+            <button type="submit">Salvar</button>
+            <button type="button" onclick="window.location.href='/index'">Cancelar</button>
+        </div>
     </form>
-    <a href="/index">Ver Contatos</a>
+
 
 </body>
 <script>

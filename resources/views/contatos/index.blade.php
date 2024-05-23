@@ -11,35 +11,27 @@
     @foreach ($contatos as $contato)
     <div>
         Contato: {{$contato->nome}}
-        Cidade: {{$contato->endereco->cidade}}
-        Rua: {{$contato->endereco->rua}}
-        Numero: {{$contato->endereco->numero}}
-        
-        @foreach ($contato->telefoneNumero as $telefone)
-            Telefone: {{$telefone->numero}}
-           Tipo: @if ($telefone->tipo == 0)
+         Telefone: {{$contato->telefoneNumero[0]->numero}}
+           Tipo: @if ($contato->telefoneNumero[0]->tipo == 0)
                Fixo
             @else
                 Celular
             @endif
-        @endforeach
-        Categorias:  @foreach ($contato->categoria as $categoria)
-            {{$categoria->nome}}
-        @endforeach
-
-        <form action="/edit/{{$contato->id}}" method="GET">
-            @csrf
-            <button type="submit" >editar</button>
-        </form>
-        <form action="/destroy/{{$contato->id}}" method="POST">
-            @method("DELETE")
-            @csrf
-            <button type="submit" >excluir</button>
-        </form>
-        <form action="/show/{{$contato->id}}" method="GET">
-            @csrf
-            <button>ver contato</button>
-        </form>
+        <div style="margin-top: 1rem;">
+            <form action="/edit/{{$contato->id}}" method="GET">
+                @csrf
+                <button type="submit" >Editar</button>
+            </form>
+            <form action="/destroy/{{$contato->id}}" method="POST">
+                @method("DELETE")
+                @csrf
+                <button type="submit" >Apagar Contato</button>
+            </form>
+            <form action="/show/{{$contato->id}}" method="GET">
+                @csrf
+                <button>Visualizar contato</button>
+            </form>
+        </div>
     </div>
 
 

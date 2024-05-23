@@ -55,10 +55,18 @@
             <input type="checkbox" name="categorias[]" value="{{ $key }}"
                 @if ($contato->categoria->contains($key)) checked @endif>{{ $categoria }}
         @endforeach
+
+    </form>
+    <div style="margin-top: 1rem">
+
         <button type="submit">Salvar</button>
         <button type="button" onclick="window.location.href='/index'">Cancelar</button>
-    </form>
-    <a href="/index">Ver Contatos</a>
+        <form action="/destroy/{{$contato->id}}" method="POST">
+            @method("DELETE")
+            @csrf
+            <button type="submit" >Apagar Contato</button>
+        </form>
+    </div>
 
 
 

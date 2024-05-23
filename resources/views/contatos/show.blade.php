@@ -35,12 +35,14 @@
             <p>{{ $categoria }}</p>
         @endif
     @endforeach
-    <form action="/edit/{{$contato->id}}" method="GET">
-        @csrf
-        <button type="submit" >editar</button>
-    </form>
-    <button type="button" onclick="window.location.href='/index'">Voltar</button>
-</body>
+    <div style="margin-top: 1rem;">
+        <form action="/edit/{{$contato->id}}" method="GET">
+            @csrf
+            <button type="submit" >Editar</button>
+        </form>
+        <button type="button" onclick="window.location.href='/index'">Voltar</button>
+    </body>
+    </div>
 <script>
     document.getElementById('addTelefone').addEventListener('click', function(event) {
         event.preventDefault();
