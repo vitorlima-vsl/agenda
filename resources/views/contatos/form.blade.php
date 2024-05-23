@@ -15,7 +15,7 @@
 </head>
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    @isset($contato)
+    @if(Route::currentRouteName() == 'contatos.edit')
         <form action="/update/{{ $contato->id }}" method="POST">
             @csrf
             @method('PUT')
