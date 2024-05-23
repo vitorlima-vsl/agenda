@@ -15,49 +15,53 @@
 </head>
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    <form action="{{ Route::currentRouteName() == 'contatos.edit' ? '/update/'.$contato->id : Route('contatos.store') }}" method="POST">
+    <form action="{{ Route::currentRouteName() == 'contatos.edit' ? '/update/' . $contato->id : Route('contatos.store') }}"
+        method="POST">
         @csrf
-        @if(Route::currentRouteName() == 'contatos.edit')
+        @if (Route::currentRouteName() == 'contatos.edit')
             @method('PUT')
         @endif
         <label for="nome">Nome</label>
         <input type="text" name="nome" id="nome" value="{{ isset($contato) ? $contato->nome : null }}">
 
         <div id="telefoneDiv">
-           @if(isset($contato))
-            @foreach ($contato->telefoneNumero as $telefone)
-            <div>
-                <input type="text" name="telefoneNumero[]" value="{{$telefone->numero }}">
-                <select name="tipo[]">
-                @foreach ($tipoTelefones as $index => $tipoTelefone)
-                <option value="{{ $index }}" @if ($index == $telefone->tipo) selected @endif>
-                    {{ $tipoTelefone }}</option>
-                    @endforeach
-                </select>
-                @if (!$loop->first)
-                <button type="button" onclick="removeTelefone(this)">Remover</button>
-                @endif
-                </div>
+            @if (isset($contato))
+                @foreach ($contato->telefoneNumero as $telefone)
+                    <div>
+                        <input type="text" name="telefoneNumero[]" value="{{ $telefone->numero }}">
+                        <select name="tipo[]">
+                            @foreach ($tipoTelefones as $index => $tipoTelefone)
+                                <option value="{{ $index }}" @if ($index == $telefone->tipo) selected @endif>
+                                    {{ $tipoTelefone }}</option>
+                            @endforeach
+                        </select>
+                        @if (!$loop->first)
+                            <button type="button" onclick="removeTelefone(this)">Remover</button>
+                        @endif
+                    </div>
                 @endforeach
             @else
-            <div>
-                <input type="text" name="telefoneNumero[]" value="">
-                <select name="tipo[]">
-                @foreach ($tipoTelefones as $index => $tipoTelefone)
-                <option value="{{ $index }}">{{ $tipoTelefone }}</option>
-                @endforeach
-                </select>
-            </div>
+                <div>
+                    <input type="text" name="telefoneNumero[]" value="">
+                    <select name="tipo[]">
+                        @foreach ($tipoTelefones as $index => $tipoTelefone)
+                            <option value="{{ $index }}">{{ $tipoTelefone }}</option>
+                        @endforeach
+                    </select>
+                </div>
             @endif
         </div>
         <button id="addTelefone" type="button">Adicionar mais telefone</button>
 
         <label for="cidade">cidade</label>
-        <input type="text" name="cidade" id="cidade" value="{{ isset($contato) ? $contato->endereco->cidade : '' }}">
+        <input type="text" name="cidade" id="cidade"
+            value="{{ isset($contato) ? $contato->endereco->cidade : '' }}">
         <label for="rua">rua</label>
-        <input type="text" name="rua" id="rua" value="{{ isset($contato) ? $contato->endereco->rua : '' }}">
+        <input type="text" name="rua" id="rua"
+            value="{{ isset($contato) ? $contato->endereco->rua : '' }}">
         <label for="numero">numero</label>
-        <input type="text" name="numero" id="numero" value="{{ isset($contato) ? $contato->endereco->numero : '' }}">
+        <input type="text" name="numero" id="numero"
+            value="{{ isset($contato) ? $contato->endereco->numero : '' }}">
 
         @foreach ($categorias as $key => $categoria)
             <input type="checkbox" name="categorias[]" value="{{ $key }}"
@@ -68,11 +72,11 @@
     </form>
     <div style="margin-top: 1rem">
         <button type="button" onclick="window.location.href='/index'">Cancelar</button>
-        @if(isset($contato))
-            <form action="/destroy/{{$contato->id}}" method="POST">
-                @method("DELETE")
+        @if (isset($contato))
+            <form action="/destroy/{{ $contato->id }}" method="POST">
+                @method('DELETE')
                 @csrf
-                <button type="submit" >Apagar Contato</button>
+                <button type="submit">Apagar Contato</button>
             </form>
         @endif
     </div>
@@ -80,8 +84,7 @@
 <script>
     document.getElementById('addTelefone').addEventListener('click', function(event) {
         const selects = document.querySelectorAll('select');
-            if (selects.length < 2)
-            {
+        if (selects.length < 2) {
             event.preventDefault();
             var telefoneDiv = document.getElementById('telefoneDiv');
             var newTelefoneDiv = telefoneDiv.querySelector('div').cloneNode(true);
@@ -101,14 +104,14 @@
 
             // Adiciona o novo div ao telefoneDiv
             telefoneDiv.appendChild(newTelefoneDiv);
+        } else {
+            alert('Você já adicionou o número máximo de telefones!');
         }
-            else {
-                alert('Você já adicionou o número máximo de telefones!');
-            }
-        });
-        function removeTelefone(button) {
-         button.parentNode.remove();
-     }
+    });
+
+    function removeTelefone(button) {
+        button.parentNode.remove();
+    }
 </script>
 
 </html>
