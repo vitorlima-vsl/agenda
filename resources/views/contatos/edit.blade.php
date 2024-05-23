@@ -93,7 +93,7 @@
         else{
             alert("Você já adicionou o máximo de telefones permitidos");}
      });
-
+     // Função para carregar o botão de remover o telefone em um form preenchido de visualização de contato
      function removeTelefone(button) {
          button.parentNode.remove();
      }
