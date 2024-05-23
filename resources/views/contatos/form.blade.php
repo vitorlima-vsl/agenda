@@ -15,7 +15,12 @@
 </head>
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    <form action="{{ Route::currentRouteName() == 'contatos.edit' ? '/update/' . $contato->id : Route('contatos.store') }}"
+
+    {{-- Eu não incluí o formulário de exibição aqui porque eu queria fazer algo diferente,
+        mas você poderia usar o formulário de criação para exibir as informações
+        com os campos desabilitados que não seria problema --}}
+    <form
+        action="{{ Route::currentRouteName() == 'contatos.edit' ? '/update/' . $contato->id : Route('contatos.store') }}"
         method="POST">
         @csrf
         @if (Route::currentRouteName() == 'contatos.edit')
