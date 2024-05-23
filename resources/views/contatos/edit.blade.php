@@ -56,10 +56,10 @@
                 @if ($contato->categoria->contains($key)) checked @endif>{{ $categoria }}
         @endforeach
 
+        <button type="submit">Salvar</button>
     </form>
     <div style="margin-top: 1rem">
 
-        <button type="submit">Salvar</button>
         <button type="button" onclick="window.location.href='/index'">Cancelar</button>
         <form action="/destroy/{{$contato->id}}" method="POST">
             @method("DELETE")
