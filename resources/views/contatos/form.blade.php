@@ -22,19 +22,26 @@
         <label for="nome">Nome</label>
         <input type="text" name="nome" id="nome" value="{{isset($contato) ? $contato->nome : null}}" {{isset($form) ? $form : null}}>
         {{-- quero fazer a insercao de mais numeros com JS, entao vou esperar para criar na proxima issue, mas ja esta adaptado a ter mais de um numero. --}}
+       <div id="telefoneDiv">
         <label for="telefoneNumero">Telefone</label>
         <input type="text" name="telefoneNumero[]" id="telefoneNumero" value="">
+        <label for="tipo">Tipo</label>
+        <select name="tipo[]">
+            @foreach ($tipoTelefones as $tipoTelefone)
+                <option value="{{ $loop->index }}">{{ $tipoTelefone }}</option>
+            @endforeach
+        </select>
+    </div>
+    <button id="addTelefone" type="button">Adicionar mais telefone</button>
 
-        <label for="cidade">cidade</label>
+
+        <label for="cidade" style="margin-left: 0.5rem;">Cidade</label>
         <input type="text" name="cidade" id="cidade">
-        <label for="rua">rua</label>
+        <label for="rua">Rua</label>
         <input type="text" name="rua" id="rua">
-        <label for="numero">numero</label>
+        <label for="numero">Numero</label>
         <input type="text" name="numero" id="numero">
 
-        @foreach ($tipoTelefones as $tipoTelefone)
-            <input type="radio" name="tipo[]" value="{{ $loop->index }}">{{ $tipoTelefone }}
-        @endforeach
 
         @foreach ($categorias as $key => $categoria)
             <input type="checkbox" name="categorias[]" value="{{ $key }}">{{ $categoria }}
@@ -44,8 +51,16 @@
     </form>
     <a href="/index">Ver Contatos</a>
 
-
-
 </body>
-
+<script>
+    document.getElementById('addTelefone').addEventListener('click', function() {
+        var telefoneDiv = document.getElementById('telefoneDiv');
+        var newTelefoneDiv = telefoneDiv.cloneNode(true);
+        newTelefoneDiv.querySelector('input[type="text"]').value = '';
+        newTelefoneDiv.querySelectorAll('input[type="radio"]').forEach(function(radio) {
+            radio.checked = false;
+        });
+        telefoneDiv.parentNode.insertBefore(newTelefoneDiv, telefoneDiv.nextSibling);
+    });
+</script>
 </html>
