@@ -19,15 +19,27 @@
 
     <form action="/update/{{ $contato->id }}" method="POST">
         @csrf
-        @method("PUT")
+        @method('PUT')
         <label for="nome">Nome</label>
         <input type="text" name="nome" id="nome" value="{{ $contato->nome }}">
 
         <label for="telefoneNumero">Telefone</label>
 
-        @foreach ($contato->telefoneNumero as $telefone)
-    <input type="text" name="telefoneNumero[]" id="telefoneNumero" value="{{ $telefone->numero }}">
-@endforeach
+        <div id="telefoneDiv">
+            @foreach ($contato->telefoneNumero as $telefone)
+                <div>
+                    <input type="text" name="telefoneNumero[]" value="{{ $telefone->numero }}">
+                    <select name="tipo[]">
+                        @foreach ($tipoTelefones as $index => $tipoTelefone)
+                            <option value="{{ $index }}" @if ($index == $telefone->tipo) selected @endif>
+                                {{ $tipoTelefone }}</option>
+                        @endforeach
+                    </select>
+                    <button type="button" onclick="removeTelefone(this)">Remover</button>
+                </div>
+            @endforeach
+        </div>
+
 
         <label for="cidade">cidade</label>
         <input type="text" name="cidade" id="cidade" value="{{ $contato->endereco->cidade }}">
@@ -37,15 +49,6 @@
         <input type="text" name="numero" id="numero" value="{{ $contato->endereco->numero }}">
 
 
-
-        @foreach ($tipoTelefones as $tipoTelefone)
-        <input type="radio" name="tipo[]"
-            value="{{ $loop->index }}"
-            @foreach ($contato->telefoneNumero as $telefone)
-                @if ($loop->parent->index == $telefone->tipo) checked @endif
-            @endforeach
-        >{{ $tipoTelefone }}
-    @endforeach
         @foreach ($categorias as $key => $categoria)
             <input type="checkbox" name="categorias[]" value="{{ $key }}"
                 @if ($contato->categoria->contains($key)) checked @endif>{{ $categoria }}
@@ -58,5 +61,20 @@
 
 
 </body>
+<script>
+    document.getElementById('addTelefone').addEventListener('click', function(event) {
+        event.preventDefault();
+        var telefoneDiv = document.getElementById('telefoneDiv');
+        var newTelefoneDiv = telefoneDiv.querySelector('div').cloneNode(true);
+        newTelefoneDiv.querySelector('input[type="text"]').value = '';
+        newTelefoneDiv.querySelector('input[type="radio"]').checked = false;
+        telefoneDiv.appendChild(newTelefoneDiv);
+    });
+
+    function removeTelefone(button) {
+        button.parentNode.remove();
+    }
+</script>
+
 
 </html>
