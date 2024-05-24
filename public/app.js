@@ -28,3 +28,15 @@ document.getElementById('addTelefone').addEventListener('click', function(event)
 function removeTelefone(button) {
     button.parentNode.remove();
 }
+
+
+//hamburguer
+function toggleMenu(button) {
+    var menuOptions = button.parentElement.nextElementSibling;
+
+    if (menuOptions.style.display === "none") {
+        menuOptions.style.display = "flex";
+    } else {
+        menuOptions.style.display = "none";
+    }
+}
