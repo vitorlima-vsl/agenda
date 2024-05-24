@@ -43,14 +43,5 @@
         <button type="button" onclick="window.location.href='/index'">Voltar</button>
     </body>
     </div>
-<script>
-    document.getElementById('addTelefone').addEventListener('click', function(event) {
-        event.preventDefault();
-        var telefoneDiv = document.getElementById('telefoneDiv');
-        var newTelefoneDiv = telefoneDiv.cloneNode(true);
-        newTelefoneDiv.querySelector('input[type="text"]').value = '';
-        newTelefoneDiv.querySelector('select').selectedIndex = 0;
-        telefoneDiv.parentNode.insertBefore(newTelefoneDiv, telefoneDiv.nextSibling);
-    });
-</script>
+
 </html>
