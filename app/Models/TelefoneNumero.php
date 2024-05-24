@@ -8,7 +8,8 @@ class TelefoneNumero extends Model
 {
     protected $hidden=
     [
-
+        'created_at',
+        'updated_at'
     ];
 
     protected $appends=
@@ -16,12 +17,17 @@ class TelefoneNumero extends Model
 
     ];
 
+    protected $fillable = [
+        'numero',
+        'tipo',
+        'contato_id'
+    ];
 
     // ----------------> Setters <-------------------
 
     /**
      * Seta o atributo contato_id
-     * 
+     *
      */
 
     public function setTelefoneNumeroAttribute($value)

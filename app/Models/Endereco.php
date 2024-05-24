@@ -9,12 +9,20 @@ class Endereco extends Model
 {
     protected $hidden=
     [
-
+        'created_at',
+        'updated_at'
     ];
 
     protected $appends=
     [
 
+    ];
+
+    protected $fillable = [
+        'rua',
+        'numero',
+        'cidade',
+        'contato_id'
     ];
 
     // ----------------> Setters <-------------------
