@@ -27,13 +27,13 @@
             @method('PUT')
         @endif
         <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome" value="{{ isset($contato) ? $contato->nome : null }}">
+        <input type="text" name="nome" id="nome" value="{{ isset($contato) ? $contato->nome : null }}" required>
 
         <div id="telefoneDiv">
             @if (isset($contato))
                 @foreach ($contato->telefoneNumero as $telefone)
                     <div>
-                        <input type="text" name="telefoneNumero[]" value="{{ $telefone->numero }}">
+                        <input type="text" name="telefoneNumero[]" value="{{ $telefone->numero }}" required >
                         <select name="tipo[]">
                             @foreach ($tipoTelefones as $index => $tipoTelefone)
                                 <option value="{{ $index }}" @if ($index == $telefone->tipo) selected @endif>
@@ -47,7 +47,7 @@
                 @endforeach
             @else
                 <div>
-                    <input type="text" name="telefoneNumero[]" value="">
+                    <input type="text" name="telefoneNumero[]" value="" required>
                     <select name="tipo[]">
                         @foreach ($tipoTelefones as $index => $tipoTelefone)
                             <option value="{{ $index }}">{{ $tipoTelefone }}</option>
@@ -60,13 +60,13 @@
 
         <label for="cidade">cidade</label>
         <input type="text" name="cidade" id="cidade"
-            value="{{ isset($contato) ? $contato->endereco->cidade : '' }}">
+            value="{{ isset($contato) ? $contato->endereco->cidade : '' }}" required>
         <label for="rua">rua</label>
         <input type="text" name="rua" id="rua"
-            value="{{ isset($contato) ? $contato->endereco->rua : '' }}">
+            value="{{ isset($contato) ? $contato->endereco->rua : '' }}" required>
         <label for="numero">numero</label>
         <input type="text" name="numero" id="numero"
-            value="{{ isset($contato) ? $contato->endereco->numero : '' }}">
+            value="{{ isset($contato) ? $contato->endereco->numero : '' }}" required>
 
         @foreach ($categorias as $key => $categoria)
             <input type="checkbox" name="categorias[]" value="{{ $key }}"
