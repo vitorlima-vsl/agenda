@@ -19,7 +19,7 @@
             </div>
             <div class="flex content-start justify-end">
                 <button onclick="window.location.href='/create'"
-                    class="group cursor-pointer outline-none hover:rotate-90 duration-300 h-6 w-6 mt-4 me-2  absolute"
+                    class="group cursor-pointer outline-none hover:rotate-90 duration-300 h-6 w-6  me-2  absolute"
                     title="Add New">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
                     </svg>
@@ -33,8 +33,30 @@
                     <p class="text-lg text-[#434955] font-bold">
                         {{ $contato->nome }}
                     </p>
-                    <div class="flex">
+
+                    <div class="grid">
                         <p class="font-semibold text-[#3F5376]">{{ '(' . substr($contato->telefoneNumero[0]->numero, 0, 2) . ') ' . substr($contato->telefoneNumero[0]->numero, 2, 1) . ' ' . substr($contato->telefoneNumero[0]->numero, 3, 4) . '-' . substr($contato->telefoneNumero[0]->numero, 7) }}</p>
+
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="grid grid-rows-2">
+                    <div class="flex content-start justify-end ">
+                        <button onclick="toggleMenu(this)"
+                            class="group cursor-pointer outline-none hover:rotate-90 duration-300 h-6 w-6 mt-1  absolute"
+                            title="Add New">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4 ml-1 fill-white">
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path fill="currentColor"
+                                    d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div>
+
                         <p class="ms-2 font-bold text-[#85A0D4]">
                             @if ($contato->telefoneNumero[0]->tipo == 0)
                                 Fixo
@@ -42,21 +64,7 @@
                                 Celular
                             @endif
                         </p>
-                        </p>
-
                     </div>
-                </div>
-
-                <div class="flex content-start justify-end">
-                    <button onclick="toggleMenu(this)"
-                        class="group cursor-pointer outline-none hover:rotate-90 duration-300 h-6 w-6 mt-1  absolute"
-                        title="Add New">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4 ml-1 fill-white">
-                            <path fill="none" d="M0 0h24v24H0z"></path>
-                            <path fill="currentColor"
-                                d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z"></path>
-                        </svg>
-                    </button>
                 </div>
 
                 <div class="menuOptions mt-2 gap-2" style="display: none; ">
