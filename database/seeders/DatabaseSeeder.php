@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
        $this->call(array(
-
+            ContatoSeeder::class,
+            TelefoneNumeroSeeder::class,
+            EnderecoSeeder::class,
             CategoriaSeeder::class,
         ));
 

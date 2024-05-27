@@ -18,10 +18,6 @@
                     AGENDA</h1>
             </div>
             <div class="flex content-start justify-end">
-
-
-
-
                 <button onclick="window.location.href='/create'"
                     class="group cursor-pointer outline-none hover:rotate-90 duration-300 h-6 w-6 mt-4 me-2  absolute"
                     title="Add New">
@@ -34,15 +30,20 @@
         @foreach ($contatos as $contato)
             <div class="grid grid-cols-2 p-2 rounded shadow w-full " id="mainDiv">
                 <div class="">
-                    Contato: {{ $contato->nome }}
-                    <div class="">
-                        {{ $contato->telefoneNumero[0]->numero }}
+                    <p class="text-lg text-[#434955] font-bold">
+                        {{ $contato->nome }}
+                    </p>
+                    <div class="flex">
+                        <p class="font-semibold text-[#3F5376]">{{ '(' . substr($contato->telefoneNumero[0]->numero, 0, 2) . ') ' . substr($contato->telefoneNumero[0]->numero, 2, 1) . ' ' . substr($contato->telefoneNumero[0]->numero, 3, 4) . '-' . substr($contato->telefoneNumero[0]->numero, 7) }}</p>
+                        <p class="ms-2 font-bold text-[#85A0D4]">
+                            @if ($contato->telefoneNumero[0]->tipo == 0)
+                                Fixo
+                            @else
+                                Celular
+                            @endif
+                        </p>
+                        </p>
 
-                        : @if ($contato->telefoneNumero[0]->tipo == 0)
-                            Fixo
-                        @else
-                            Celular
-                        @endif
                     </div>
                 </div>
 
@@ -104,7 +105,7 @@
                             </svg>
                         </button>
 
-                       
+
                     </form>
 
                 </div>
