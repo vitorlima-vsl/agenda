@@ -14,12 +14,12 @@
     <div class="bg-clip-border border-2 border-black border-rounder border-dashed p-4 shadow  sm:w-2/4 xl:w-1/4 ">
         <div class="grid grid-cols-2 ">
             <div>
-                <h1 class="text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
+                <h1 class="text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl">
                     AGENDA</h1>
             </div>
             <div class="flex content-start justify-end">
                 <button onclick="window.location.href='/create'"
-                    class="group cursor-pointer outline-none hover:rotate-90 duration-300 h-6 w-6  me-2  absolute"
+                    class="group cursor-pointer outline-none hover:rotate-90 duration-300 h-4 w-4 md:h-6 md:w-6 mt-2 me-2   absolute"
                     title="Add New">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
                     </svg>
