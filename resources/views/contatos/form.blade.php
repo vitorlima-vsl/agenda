@@ -37,11 +37,11 @@
                     <div>
 
                         <label for="nome">
-                            <p class="text-base font-bold ">Nome:</p>
+                            <p class="text-base font-bold">Nome:</p>
                         </label>
                         <input placeholder="Nome" name="nome" id="nome"
-                            class="button bg-white border-2 border-blue-400 rounded-lg text-black px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
-                            type="text" />
+                            class="button bg-white border-2 border-blue-400 col-span-2 rounded-lg text-black px-6 py-3 text-base hover:border-blue-500 active:border-blue-500 cursor-pointer transition"
+                            type="text"  value=""/>
                     </div>
                     <div class="flex content-start justify-end">
                         @if (isset($contato))
@@ -80,7 +80,7 @@
                                     @endforeach
                                 </select>
                                 <input
-                                    class="button bg-white border-2   border-blue-400 rounded-lg text-black px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
+                                    class="button bg-white border-2  border-blue-400 rounded-lg text-black px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
                                     type="text" name="telefoneNumero[]" value="{{ $telefone->numero }}" required>
                                 @if (!$loop->first)
                                     <button type="button" onclick="removeTelefone(this)"
@@ -108,7 +108,7 @@
                     <button
                         class="bg-[#3B82F6] border-2 border-blue-500 rounded-lg ms-2 text-white  text-base hover:border-blue-700 shadow-blue-500 shadow-md hover:shadow-blue-700 hover:shadow-md cursor-pointer transition"
                         id="addTelefone" type="button" role="button">
-                        <p class="text-base font-semibold">Adicionar Número</p>
+                        <p class="text-base font-semibold p-2">Adicionar Número</p>
                     </button>
                 </div>
 
@@ -119,7 +119,7 @@
                             <p class="text-base font-semibold mb-1">Cidade: </p>
                         </label>
                         <input
-                            class="button bg-white border-2 border-blue-400 rounded-lg text-black w-32 md:w-48  px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
+                            class="button bg-white border-2 border-blue-400 rounded-lg text-black w-32 md:w-64  px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
                             type="text" placeholder="Cidade" name="cidade" id="cidade"
                             value="{{ isset($contato) ? $contato->endereco->cidade : '' }}" required>
                     </div>
@@ -144,17 +144,15 @@
                 </div>
                 <p class="text-base font-bold ms-1">Categorias:</p>
                 <div class="flex">
-
-
-                        @foreach ($categorias as $key => $categoria)
-                            <div class="flex">
-                                <p class="text-xs md:text-base text-[#434955] font-semibold mx-2">{{ $categoria }}</p>
-                                <input
-                                    class="border-white-400/20 scale-100 transition-all duration-500 ease-in-out hover:scale-110checked:scale-100 w-4 h-4 md:w-6 md:h-6"
-                                    type="checkbox" name="categorias[]" value="{{ $key }}"
-                                    @if (isset($contato) && $contato->categoria->contains($key)) checked @endif>
-                            </div>
-                        @endforeach
+                    @foreach ($categorias as $key => $categoria)
+                        <div class="flex">
+                            <p class="text-xs md:text-base text-[#434955] font-semibold mx-2">{{ $categoria }}</p>
+                            <input
+                                class="border-white-400/20 scale-100 transition-all duration-500 ease-in-out hover:scale-110checked:scale-100 w-4 h-4 md:w-6 md:h-6"
+                                type="checkbox" name="categorias[]" value="{{ $key }}"
+                                @if (isset($contato) && $contato->categoria->contains($key)) checked @endif>
+                        </div>
+                    @endforeach
                 </div>
 
                 <div class="flex justify-center gap-2 mt-2">
@@ -170,7 +168,6 @@
             </div>
         </div>
     </form>
-
 
 
 
