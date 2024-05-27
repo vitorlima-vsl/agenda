@@ -11,11 +11,15 @@ document.getElementById('addTelefone').addEventListener('click', function(event)
 
         // Adiciona o botão de remover ao novo div
         var removeButton = document.createElement('button');
-        removeButton.textContent = 'Remover';
-        removeButton.addEventListener('click', function(event) {
-            event.preventDefault();
-            this.parentNode.remove();
-        });
+        removeButton.type = 'button';
+        removeButton.className = 'button bg-[#F5533B] border-red-400 hover:border-red-600 text-white font-bold py-2 px-4';
+        removeButton.onclick = function() { removeTelefone(this); };
+
+        var p = document.createElement('p');
+        p.className = 'text-xs';
+        p.textContent = 'Remover';
+
+        removeButton.appendChild(p);
         newTelefoneDiv.appendChild(removeButton);
 
         // Adiciona o novo div ao telefoneDiv
@@ -28,8 +32,6 @@ document.getElementById('addTelefone').addEventListener('click', function(event)
 function removeTelefone(button) {
     button.parentNode.remove();
 }
-
-
 //hamburguer
 function toggleMenu(button) {
     var menuOptions = button.parentElement.nextElementSibling;
