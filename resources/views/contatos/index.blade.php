@@ -41,9 +41,6 @@
 
                     </div>
                 </div>
-
-
-                <div class="grid grid-rows-2">
                     <div class="flex content-start justify-end ">
                         <button onclick="toggleMenu(this)"
                             class="group cursor-pointer outline-none hover:rotate-90 duration-300 h-6 w-6 mt-1  absolute"
@@ -54,19 +51,17 @@
                                     d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z"></path>
                             </svg>
                         </button>
+                        <div class="flex">
+                            <p class="flex content-end ms-2 font-bold text-[#85A0D4]" style="
+                            align-items: flex-end;">
+                                @if ($contato->telefoneNumero[0]->tipo == 0)
+                                    Fixo
+                                @else
+                                    Celular
+                                @endif
+                            </p>
+                        </div>
                     </div>
-                    <div>
-
-                        <p class="ms-2 font-bold text-[#85A0D4]">
-                            @if ($contato->telefoneNumero[0]->tipo == 0)
-                                Fixo
-                            @else
-                                Celular
-                            @endif
-                        </p>
-                    </div>
-                </div>
-
                 <div class="menuOptions mt-2 gap-2" style="display: none; ">
                     <form action="/show/{{ $contato->id }}" method="GET">
                         @csrf
