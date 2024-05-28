@@ -1,0 +1,7 @@
+php artisan tinker
+namespace
+$contatos = new Contato
+$contato_1 = $contatos->find(1)
+$contato_1->categoria
+$contato_1->endereco
+$contato_1->telefoneNumero 
