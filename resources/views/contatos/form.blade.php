@@ -17,20 +17,20 @@
 
 </head>
 
-<body class="">
+<body class="flex justify-center">
 
     {{-- Eu não incluí o formulário de exibição aqui porque eu queria fazer algo diferente,
         mas você poderia usar o formulário de criação para exibir as informações
         com os campos desabilitados que não seria problema --}}
-    <form
-        action="{{ Route::currentRouteName() == 'contatos.edit' ? '/update/' . $contato->id : Route('contatos.store') }}"
-        method="POST">
-        @csrf
-        @if (Route::currentRouteName() == 'contatos.edit')
-            @method('PUT')
-        @endif
 
         <div class="bg-clip-border border-2 border-black border-rounder border-dashed p-4 shadow  sm:w-2/4 xl:w-1/4">
+            <form
+                action="{{ Route::currentRouteName() == 'contatos.edit' ? '/update/' . $contato->id : Route('contatos.store') }}"
+                method="POST">
+                @csrf
+                @if (Route::currentRouteName() == 'contatos.edit')
+                    @method('PUT')
+                @endif
 
             <div class="grid grid-cols-1 gap-2">
                 <div class="grid grid-cols-2">
@@ -40,7 +40,7 @@
                             <p class="text-base font-bold">Nome:</p>
                         </label>
                         <input placeholder="Nome" name="nome" id="nome"
-                            class="button bg-white border-2 border-blue-400 col-span-2 rounded-lg text-black px-6 py-3 text-base hover:border-blue-500 active:border-blue-500 cursor-pointer transition"
+                            class="button hover:shadow-lg bg-white border-2 border-blue-400 col-span-2 rounded-lg text-black px-6 py-3 text-base hover:border-blue-500 active:border-blue-500 cursor-pointer transition"
                             type="text"  value="{{ isset($contato) ? $contato->nome : null }}" required/>
                     </div>
                     <div class="flex content-start justify-end">
@@ -80,11 +80,11 @@
                                     @endforeach
                                 </select>
                                 <input
-                                    class="button bg-white border-2  border-blue-400 rounded-lg text-black px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
+                                    class="button hover:shadow-lg bg-white border-2  border-blue-400 rounded-lg text-black px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
                                     type="text" name="telefoneNumero[]" value="{{ $telefone->numero }}" required>
                                 @if (!$loop->first)
                                     <button type="button" onclick="removeTelefone(this)"
-                                        class="button bg-[#F5533B] border-red-400 hover:border-red-600 text-white font-bold py-2 px-4">
+                                        class="button hover:shadow-lg shadow-red-500/50 hover:shadow-red-500/100 bg-[#F5533B] border-red-400 hover:border-red-600 text-white font-bold py-2 px-4">
                                         <p class="text-xs">Remover</p>
                                     </button>
                                 @endif
@@ -98,7 +98,7 @@
                                 @endforeach
                             </select>
                             <input
-                                class="button bg-white border-2 border-blue-400 rounded-lg text-black px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
+                                class="button hover:shadow-lg bg-white border-2 border-blue-400 rounded-lg text-black px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
                                 placeholder="Digite o Número" type="text" name="telefoneNumero[]" value=""
                                 required>
                         </div>
@@ -119,16 +119,16 @@
                             <p class="text-base font-semibold mb-1">Cidade: </p>
                         </label>
                         <input
-                            class="button bg-white border-2 border-blue-400 rounded-lg text-black w-32 md:w-64  px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
+                            class="button hover:shadow-lg bg-white border-2 border-blue-400 rounded-lg text-black w-32 md:w-64  px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
                             type="text" placeholder="Cidade" name="cidade" id="cidade"
                             value="{{ isset($contato) ? $contato->endereco->cidade : '' }}" required>
                     </div>
                     <div>
                         <label for="numero">
-                            <p class="text-base font-semibold mb-1 ms-8">N&#176; da Casa: </p>
+                            <p class="text-base font-semibold mb-1 ms-8">N&#176;:</p>
                         </label>
                         <input
-                            class="button bg-white border-2 border-blue-400 rounded-lg text-black w-16 md:w-24 ms-8 px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
+                            class="button hover:shadow-lg bg-white border-2 border-blue-400 rounded-lg text-black w-16 md:w-24 ms-8 px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
                             placeholder="N&#176; da Casa" type="text" name="numero" id="numero"
                             value="{{ isset($contato) ? $contato->endereco->numero : '' }}" required>
                     </div>
@@ -137,13 +137,13 @@
                             <p class="text-base font-semibold mb-1 ">Rua: </p>
                         </label>
                         <input
-                            class="button bg-white border-2 border-blue-400 rounded-lg text-black w-64 px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
+                            class="button hover:shadow-lg bg-white border-2 border-blue-400 rounded-lg text-black w-64 px-6 py-3 text-base hover:border-blue-500 cursor-pointer transition"
                             placeholder="Rua" type="text" name="rua" id="rua"
                             value="{{ isset($contato) ? $contato->endereco->rua : '' }}" required>
                     </div>
                 </div>
                 <p class="text-base font-bold ms-1">Categorias:</p>
-                <div class="flex">
+                <div class="flex flex-col gap-2">
                     @foreach ($categorias as $key => $categoria)
                         <div class="flex">
                             <p class="text-xs md:text-base text-[#434955] font-semibold mx-2">{{ $categoria }}</p>
@@ -156,10 +156,10 @@
                 </div>
 
                 <div class="flex justify-center gap-2 mt-2">
-                    <button class="button  " type="submit">
-                        <p class="text-base font-semibold"> Salvar</p>
+                    <button class="button hover:shadow-lg " type="submit">
+                        <p class="text-base font-semibold "> Salvar</p>
                     </button>
-                    <button class="button  " type="button"
+                    <button class="button hover:shadow-lg " type="button"
                         onclick="event.preventDefault(); window.location.href='/index'">
                         <p class="text-base font-semibold">Cancelar</p>
                     </button>
