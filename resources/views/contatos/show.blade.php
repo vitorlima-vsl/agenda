@@ -13,7 +13,7 @@
 </head>
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    <h1>Detalhes do Contato</h1>
+    <h1 class="text-3xl">Detalhes do Contato</h1>
 
     <p><strong>Nome:</strong> {{ $contato->nome }}</p>
 
