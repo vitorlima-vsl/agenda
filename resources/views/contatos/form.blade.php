@@ -41,7 +41,7 @@
                         </label>
                         <input placeholder="Nome" name="nome" id="nome"
                             class="button bg-white border-2 border-blue-400 col-span-2 rounded-lg text-black px-6 py-3 text-base hover:border-blue-500 active:border-blue-500 cursor-pointer transition"
-                            type="text"  value=""/>
+                            type="text"  value="{{ isset($contato) ? $contato->nome : null }}" required/>
                     </div>
                     <div class="flex content-start justify-end">
                         @if (isset($contato))
