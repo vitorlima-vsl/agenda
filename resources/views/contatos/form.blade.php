@@ -40,7 +40,7 @@
                 </svg>
             </button>
         </form> --}}
-        <div class="bg-white mt-9  border-2 border-gray-50 border-rounder  p-4 shadow  sm:w-2/4 xl:w-1/4">
+        <div class="bg-white md:mt-9  border-2 border-gray-50 border-rounder  p-4 shadow  sm:w-2/4 xl:w-1/4">
             <form
                 action="{{ Route::currentRouteName() == 'contatos.edit' ? '/update/' . $contato->id : Route('contatos.store') }}"
                 method="POST">
@@ -148,7 +148,7 @@
                 <div class="flex flex-col gap-2">
                     @foreach ($categorias as $key => $categoria)
                         <div class="grid grid-cols-2">
-                            <p class="text-xs md:text-base ttext-[#3F5376] font-semibold mx-2">{{ $categoria }}</p>
+                            <p class="text-base text-[#3F5376] font-semibold mx-2">{{ $categoria }}</p>
                             <div>
                                 <input
                                     class="scale-100 transition-all duration-500 ease-in-out hover:scale-110checked:scale-100 w-4 h-4 md:w-6 md:h-6"
