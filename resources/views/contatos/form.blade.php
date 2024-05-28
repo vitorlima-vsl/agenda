@@ -144,7 +144,7 @@
                             value="{{ isset($contato) ? $contato->endereco->rua : '' }}" required>
                     </div>
                 </div>
-                <p class="text-base font-bold ms-1 ">Categorias:</p>
+                <p class="text-lg text-[#434955] font-bold mt-2">Categorias:</p>
                 <div class="flex flex-col gap-2">
                     @foreach ($categorias as $key => $categoria)
                         <div class="grid grid-cols-2">
