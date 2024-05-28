@@ -12,29 +12,40 @@ class TelefoneNumeroSeeder extends Seeder
      */
     public function run(): void
     {//somente para teste
-        DB::table('telefone_numeros')->insert([
+        $numeros = [
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999),
+            "7999" . rand(6504128, 9999999)
+        ];
 
-            'numero' => "00000000",
-            'tipo' => 0,
-            'contato_id' => 1,
 
-        ]);
-        DB::table('telefone_numeros')->insert
-        ([
+        foreach ($numeros as $index => $numero) {
+            $contatoId = floor($index / 2) + 1;
+            DB::table('telefone_numeros')->insert([
+            'numero' => $numero,
+            'tipo' => rand(0, 1),
+            'contato_id' => $contatoId,
+            ]);
+        }
 
-            'numero' => "0000001",
-            'tipo' => 0,
-            'contato_id' => 2,
 
-        ]);
-        DB::table('telefone_numeros')->insert
-        ([
-
-            'numero' => "00000011",
-            'tipo' => 0,
-            'contato_id' => 3,
-
-        ]);
 
     }
 }

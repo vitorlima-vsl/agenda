@@ -16,7 +16,7 @@ class ContatoSeeder extends Seeder
     { //somente para teste
         DB::table('contatos')->insert
         ([
-            'nome' => "paola",
+            'nome' => "Tercio",
         ]);
         DB::table('contatos')->insert
         ([
@@ -24,7 +24,35 @@ class ContatoSeeder extends Seeder
         ]);
         DB::table('contatos')->insert
         ([
-            'nome' => "Pedro",
+            'nome' => "Ricardo",
+        ]);
+        DB::table('contatos')->insert
+        ([
+            'nome' => "Rodrigo",
+        ]);
+        DB::table('contatos')->insert
+        ([
+            'nome' => "John",
+        ]);
+        DB::table('contatos')->insert
+        ([
+            'nome' => "Michael",
+        ]);
+        DB::table('contatos')->insert
+        ([
+            'nome' => "David",
+        ]);
+        DB::table('contatos')->insert
+        ([
+            'nome' => "Robert",
+        ]);
+        DB::table('contatos')->insert
+        ([
+            'nome' => "William",
+        ]);
+        DB::table('contatos')->insert
+        ([
+            'nome' => "James",
         ]);
     }
 }
