@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('style.css') }}">
 </head>
 
-<body>
+<body class="flex justify-center">
 
     <div class="bg-clip-border border-2 border-black border-rounder border-dashed p-4 shadow  sm:w-2/4 xl:w-1/4 ">
         <div class="grid grid-cols-2 ">

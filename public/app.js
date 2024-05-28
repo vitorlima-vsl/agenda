@@ -12,7 +12,7 @@ document.getElementById('addTelefone').addEventListener('click', function(event)
         // Adiciona o botão de remover ao novo div
         var removeButton = document.createElement('button');
         removeButton.type = 'button';
-        removeButton.className = 'button bg-[#F5533B] border-red-400 hover:border-red-600 text-white font-bold py-2 px-4';
+        removeButton.className = 'button hover:shadow-lg shadow-red-500/50 hover:shadow-red-500/100 bg-[#F5533B] border-red-400 hover:border-red-600 text-white font-bold py-2 px-4';
         removeButton.onclick = function() { removeTelefone(this); };
 
         var p = document.createElement('p');
