@@ -23,6 +23,23 @@
         mas você poderia usar o formulário de criação para exibir as informações
         com os campos desabilitados que não seria problema --}}
 
+        {{-- feature futura --}}
+        {{-- <form action="/destroy/{{ $contato->id }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <button
+                class="edit-button bg-[#F5533B] hover:bg-[#F5533B] w-14 h-6 rounded-md before:content-['Excluir']">
+                <svg viewBox=" 0 0 15 15" class="w-5 fill-white edit-svgIcon">
+                    <svg class="w-6 h-6 fill-white" stroke="currentColor" stroke-width="1.5"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                            stroke-linejoin="round" stroke-linecap="round"></path>
+                    </svg>
+                    Button
+                </svg>
+            </button>
+        </form> --}}
         <div class="bg-white mt-9  border-2 border-gray-50 border-rounder  p-4 shadow  sm:w-2/4 xl:w-1/4">
             <form
                 action="{{ Route::currentRouteName() == 'contatos.edit' ? '/update/' . $contato->id : Route('contatos.store') }}"
@@ -45,22 +62,7 @@
                     </div>
                     <div class="flex content-start justify-end">
                         @if (isset($contato))
-                            <form action="/destroy/{{ $contato->id }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <button
-                                    class="edit-button bg-[#F5533B] hover:bg-[#F5533B] w-14 h-6 rounded-md before:content-['Excluir']">
-                                    <svg viewBox=" 0 0 15 15" class="w-5 fill-white edit-svgIcon">
-                                        <svg class="w-6 h-6 fill-white" stroke="currentColor" stroke-width="1.5"
-                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                                                stroke-linejoin="round" stroke-linecap="round"></path>
-                                        </svg>
-                                        Button
-                                    </svg>
-                                </button>
-                            </form>
+
                         @endif
                     </div>
                 </div>
